@@ -12,13 +12,13 @@
     	>> 써드파티 모듈 (ex> ExpressJS, ...)
     	>> 사용자 정의 모듈 (module.exports='~')
 
-#### ==동기 VS 비동기==
+### 동기 VS 비동기
 NodeJS는 기본적으로 ++비동기++로 동작함
 ex> 
 	- readFileSync()
     - readFile()
 
-#### ==ExpressJS==
+### ExpressJS
 	- 어플리케이션
 		1. 익스프레스 인스턴스
 		2. 서버에 필요한 기능은 미들웨어를 어플리케이션에 추가
@@ -38,9 +38,9 @@ ex>
 		3. req.params(), req.query(), req.body() 메서드를 주로 사용
 		4. res.send(), res.status(), res.json() 메서드를 주로 사용
 
-#### ==REST API==
+### REST API
 	- HTTP Requrest
-		1. 모든 자원은 명사로 식별
+		1. 모든 자원(Resource)은 명사로 식별
 		2. HTTP 경로로 자원을 요청
 	- HTTP Method
 		GET : 조회
@@ -62,8 +62,44 @@ ex>
         5XX : Server Error
         	500 -> Internal Server Error
 
-#### ==방법론 : TDD==
+### TDD
+	- 자동화 테스트1 : Unit Test (단위 테스트)
+		모듈이나 객체를 구성하는 '단일 함수' 정도의 크기에 해당하는 코드 단위
+        Network접근 / DB 접근과 같은 의존성으로부터 격리되어야 함
+        (의존성들을 적절히 통제하여 테스트와 상관없는 것들은 임의의 것으로 교체)
+        일반적으로 "xUnit Style" 형태로 작성하는 것이 일반적임
+        각각 하나의 행동에 대해서만 테스트 수행, 서로에 대해 독립적
+        
+	- 자동화 테스트2 : Integration Test (통합 테스트)
+		DB에 대한 접근 코드 테스트 등 여러 기능을 함께 테스트
+        
+	- 자동화 테스트3 : Acceptance Test / Functional Test
+		전체 Application에 대해 자동화 테스트를 수행
+        (예를 들어 Selenium을 통해 브라우저 자동 실행해서..)
+        
+	- Test Driven Development
+		1. 테스트 코드 작성
+		2. 테스트 수행, 추가로 작성한 테스트 코드 -> 실패
+		3. 실패한 테스트 성공을 위한 최소한의 코드를 구현부에 작성
+		4. 실패 테스트 -> 성공
+		5. (3)에서 작성한 구현 코드 리팩토링
+
+
+
     - 사용 라이브러리
     	mocha, should, superTest
 
-    
+    - Mocha
+		테스트 코드 실행을 시켜주는 Runner
+        테스트 꾸러미 : 테스트 환경으로 describe()로 구현
+        테스트 케이스 : 실제 테스트를 의미하며 it()로 구현 
+        
+    - Sholud
+		검증(assertion) 라이브러리
+        가독성 높은 테스트코드 작성가능
+        
+    - SuperTest
+		express 통합 테스트용 라이브러리
+        내부적으로 express 서버를 구동시켜 실제 요청을 보낸 뒤 결과 검증
+		단위 테스트 : 함수 기능 테스트
+        통합 테스트 : API 기능 테스트
