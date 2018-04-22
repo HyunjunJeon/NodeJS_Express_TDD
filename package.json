@@ -1,29 +1,24 @@
 {
-  "name": "node_restapi_tdd",
+  "name": "tdd_node",
   "version": "1.0.0",
-  "description": "### 기본 개념 \tNodeJS의 기초     - 브라우저 밖에서 JS코드 실행 가능     - 크롬에서 사용하는 V8 엔진 (내부 C++)     - 이벤트 기반의 비동기 I/O Framework     \t>> EventLoop ~~ Non-blocking Worker      \t>> DB조회 / Network / IO 등 기다려야 하는 Job이 무거운 것     - CommonJS를 구현한 모듈 시스템 (Java의 API 같은 것)     \t>> 기본 모듈 (ex> HTTP,util, ...)     \t>> 써드파티 모듈 (ex> ExpressJS, ...)     \t>> 사용자 정의 모듈 (module.exports='~')",
+  "description": "",
   "main": "index.js",
-  "dependencies": {
-    "express": "^4.16.3",
-    "morgan": "^1.9.0",
-    "supervisor": "^0.12.0"
-  },
-  "devDependencies": {
-    "mocha": "^5.1.1",
-    "should": "^13.2.1",
-    "supertest": "^3.0.0"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HyunjunJeon/NodeJS_Express_TDD.git"
+    "test": "NODE_ENV=test mocha api/user/user.spec.js -w",
+    "start": "node bin/www.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/HyunjunJeon/NodeJS_Express_TDD/issues"
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.3"
   },
-  "homepage": "https://github.com/HyunjunJeon/NodeJS_Express_TDD#readme"
+  "devDependencies": {
+    "mocha": "^5.0.4",
+    "should": "^13.2.1",
+    "supertest": "^3.0.0"
+  }
 }

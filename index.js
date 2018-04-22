@@ -1,29 +1,18 @@
 const express = require('express')
-const logger = require('morgan')
+const morgan = require('morgan')
+const bodyParser = require('body-parser')
+const user = require('./api/user/index')
+
 const app = express()
 
-app.use(logger('dev'))
+if(process.env.NODE_ENV !== 'test'){
+    app.use(morgan('dev')) // 서버로그 발생
+}
 
-// 일반 미들웨어
-const mw = (req,res,next)=>{}
-// 에러 미들웨어
-const errorMw = (err, req, res, next) => {}
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 
-const users = [
-    { name: "Alice"},
-    { name: "Beck" },
-    { name: "Goul" }
-]
+//Routing
+app.use('/users', user(express))
 
-app.get('/',(req,res)=>{
-    res.status(200).send("Hello ExpressJS")
-})
-
-app.get('/users', (req, res) => {
-    res.status(200).send(JSON.stringify(users))
-})
-
-
-app.listen(3000, ()=>{
-    console.log("Express Server Running ing.....")
-})
+module.exports = app
